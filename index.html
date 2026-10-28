@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MASH COMBAT</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section id="titleScreen" class="screen title-screen active" aria-label="타이틀 화면">
+      <div class="title-logo" aria-label="Mash Combat"><span>Mash</span><span>Combat</span></div>
+      <nav class="title-menu" aria-label="메인 메뉴">
+        <div class="title-menu-item">스토리</div>
+        <button id="daidaiBtn" class="title-menu-item daidai-btn" type="button">다이다이</button>
+        <div class="title-menu-item">setting</div>
+        <div class="title-menu-item">credit</div>
+      </nav>
+    </section>
+
+    <section id="selectScreen" class="screen select-screen">
+      <div class="select-heading">
+        <div><span class="eyebrow">MASH COMBAT · LOCAL VERSUS</span><h2>전투 준비</h2></div>
+        <div class="select-heading-actions">
+          <p>각 플레이어가 캐릭터를 고르고<br>전투 맵을 선택하세요.</p>
+          <button id="selectTitleBtn" class="return-title-btn" type="button" aria-label="타이틀로 돌아가기" title="타이틀로 돌아가기">↶</button>
+        </div>
+      </div>
+
+      <div class="versus-stage">
+        <article class="fighter-preview p1-panel" id="p1Preview">
+          <div class="preview-label"><span>PLAYER 01</span><b>1P</b></div>
+          <div class="preview-body"><div class="preview-avatar" id="p1Avatar"></div><div class="preview-copy"><h3 id="p1NameSelect"></h3><span class="preview-role" id="p1Role"></span><p id="p1Desc"></p></div></div>
+          <div class="preview-controls"><span class="key-pair">← <kbd>A</kbd> / <kbd>D</kbd> → 이동</span> <i>·</i> Q 공격 <i>·</i> E / R 스킬</div>
+        </article>
+        <div class="versus-mark"><span>VS</span><small>ROUND<br>READY</small></div>
+        <article class="fighter-preview p2-panel" id="p2Preview">
+          <div class="preview-label"><span>PLAYER 02</span><b>2P</b></div>
+          <div class="preview-body"><div class="preview-avatar" id="p2Avatar"></div><div class="preview-copy"><h3 id="p2NameSelect"></h3><span class="preview-role" id="p2Role"></span><p id="p2Desc"></p></div></div>
+          <div class="preview-controls"><span class="key-pair">← <kbd>J</kbd> / <kbd>L</kbd> → 이동</span> <i>·</i> U 공격 <i>·</i> O / P 스킬</div>
+        </article>
+      </div>
+
+      <div class="roster-heading"><div><span class="eyebrow">CHOOSE YOUR FIGHTER</span><h3>캐릭터 선택</h3></div><span>좌클릭 1P 선택 · 우클릭 2P 선택</span></div>
+      <div class="character-grid roster-grid" id="characterRoster"></div>
+
+      <div class="selection-footer">
+        <div class="map-select"><span class="map-label">BATTLE STAGE</span><button class="map-btn active" data-map="0"><i class="map-swatch garden"></i><span>하늘 정원</span><b>01</b></button><button class="map-btn" data-map="1"><i class="map-swatch ruins"></i><span>보랏빛 유적</span><b>02</b></button></div>
+        <button id="startBtn" class="primary-btn"><span>전투 시작</span><b>→</b></button>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen">
+      <div class="hud">
+        <div class="hud-side hud-left">
+          <div class="hud-label"><b>1P</b><span id="p1Name">검사</span></div>
+          <div class="bar hp"><i id="p1Hp"></i></div>
+          <div class="bar ult"><i id="p1Ult"></i></div>
+        </div>
+        <div class="hud-center">MASH<br><small>COMBAT</small></div>
+        <div class="hud-side hud-right">
+          <div class="hud-label"><span id="p2Name">궁수</span><b>2P</b></div>
+          <div class="bar hp"><i id="p2Hp"></i></div>
+          <div class="bar ult"><i id="p2Ult"></i></div>
+        </div>
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="game" width="1200" height="650"></canvas>
+        <div id="roundText" class="round-text">FIGHT!</div>
+        <div id="resultPanel" class="result-panel hidden">
+          <h2 id="winnerText">1P WIN!</h2>
+          <p id="winnerSub"></p>
+          <button id="rematchBtn" class="primary-btn">재대결</button>
+          <button id="selectBtn" class="secondary-btn">캐릭터 선택</button>
+        </div>
+      </div>
+
+      <div class="controls-guide">
+        <div><b>1P</b> 이동 A/D · 점프 W · 평타 Q · 1스킬 E · 2스킬 R · 궁극 F · 회피 S</div>
+        <div><b>2P</b> 이동 J/L · 점프 I · 평타 U · 1스킬 O · 2스킬 P · 궁극 ; · 회피 K</div>
+      </div>
+      <div class="game-settings-row">
+        <div id="gameSettingsPanel" class="game-settings-panel" hidden>
+          <button id="titleFromGameBtn" type="button">타이틀로 돌아가기</button>
+        </div>
+        <button id="gameSettingsBtn" class="game-settings-btn" type="button" aria-label="설정" aria-expanded="false" aria-controls="gameSettingsPanel" title="설정">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
